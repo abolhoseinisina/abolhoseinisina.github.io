@@ -19,21 +19,41 @@ function createPost(post){
     elem.before(clone);   
 }
 
+function createPopularPost(post){
+    var elem = document.querySelector('#popularPostTemp');
+    var clone = elem.cloneNode(true);
+    console.log(clone)
+    
+    clone.getElementsByClassName("popular-post-image")[0].src = post['picture'];
+    clone.getElementsByClassName("popular-post-title")[0].innerHTML = post['title'];
+    clone.getElementsByClassName("popular-post-subtitle")[0].innerHTML = post['subtitle'];
+    
+    elem.after(clone);
+}
+
 $(document).ready(function() {
     $.ajax({
         type: "GET",
         url: "https://raw.githubusercontent.com/abolhoseinisina/abolhoseinisina.github.io/main/content/posts.csv",
         dataType: "text",
         success: function(posts) {
-            console.log(posts)
             posts = $.csv.toObjects(posts);
             
             for (let i = 0; i < posts.length; i++) {
                 createPost(posts[i]);
             }
             
+            for (let i = 0; i < 3; i++) {
+                if(posts[i] != undefined){
+                    console.log(i)
+                    createPopularPost(posts[i])
+                }
+            }
+
             var elem = document.querySelector('#postTemp');
-            elem.remove()
+            elem.remove();
+            var elem = document.querySelector('#popularPostTemp');
+            elem.remove();
         }
      });
 });
