@@ -14,7 +14,7 @@ function createPost(post){
     clone.getElementsByClassName("post-image")[0].src = post['picture'];
     clone.getElementsByClassName("post-title")[0].innerHTML = "<h3><b>" + post['title'] + "</b></h3><h5>" + post['subtitle'] + 
                                                               ", <span class='w3-opacity'>" + date + "</span></h5>";
-    clone.getElementsByClassName("post-content")[0].textContent = post['content'];
+    clone.getElementsByClassName("post-content")[0].innerHTML = post['content'];
     clone.getElementsByClassName("post-comment")[0].href = "mailto:abolhoseini.sina@gmail.com?subject=Blog post: " + post['title'];
     elem.before(clone);   
 }
