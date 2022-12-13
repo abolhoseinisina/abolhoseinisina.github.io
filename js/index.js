@@ -22,7 +22,6 @@ function createPost(post){
 function createPopularPost(post){
     var elem = document.querySelector('#popularPostTemp');
     var clone = elem.cloneNode(true);
-    console.log(clone)
     
     clone.getElementsByClassName("popular-post-image")[0].src = post['picture'];
     clone.getElementsByClassName("popular-post-title")[0].innerHTML = post['title'];
@@ -45,7 +44,6 @@ $(document).ready(function() {
             
             for (let i = 0; i < 3; i++) {
                 if(posts[i] != undefined){
-                    console.log(i)
                     createPopularPost(posts[i])
                 }
             }
