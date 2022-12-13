@@ -39,7 +39,7 @@ $(document).ready(function() {
             posts = $.csv.toObjects(posts);
             
             for (let i = 0; i < posts.length; i++) {
-                createPost(posts[i]);
+                createPost(posts[posts.length - 1 - i]);
             }
             
             for (let i = 0; i < 3; i++) {
