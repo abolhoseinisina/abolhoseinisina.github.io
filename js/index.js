@@ -59,7 +59,7 @@ $(document).ready(function() {
             
             for (let i = 0; i < 3; i++) {
                 if(posts[i] != undefined){
-                    createPopularPost(posts[i])
+                    createPopularPost(posts[posts.length - 1 - i])
                 }
             }
 
