@@ -31,6 +31,7 @@ function createPost(post){
                                                               ", <span class='w3-opacity'>" + date + "</span></h5>";
     clone.getElementsByClassName("post-content")[0].innerHTML = post['content'];
     clone.getElementsByClassName("post-comment")[0].href = "mailto:abolhoseini.sina@gmail.com?subject=Blog post: " + post['title'];
+    clone.getElementsByClassName("post-category")[0].innerHTML = "Category: <a href='#'>" + post['subject'] + "</a>"
     elem.before(clone);   
 }
 
