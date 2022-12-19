@@ -25,21 +25,6 @@ function Post(){
     addPostToContent(textEditor.innerHTML);
 }
 
-function onSignIn(googleUser) {
-    var profile = googleUser.getBasicProfile();
-    console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-    console.log('Name: ' + profile.getName());
-    console.log('Image URL: ' + profile.getImageUrl());
-    console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-    document.getElementById('sign-out-link').style = 'display: block;'
-  }
-  function signOut() {
-    var auth2 = gapi.auth2.getAuthInstance();
-    auth2.signOut().then(function () {
-      console.log('User signed out.');
-      document.getElementById('sign-out-link').style = 'display: none;'
-    });
-  }
 function createPost(post){
     var elem = document.querySelector('#postTemp');
     var clone = elem.cloneNode(true);
