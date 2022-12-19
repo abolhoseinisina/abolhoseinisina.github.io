@@ -17,7 +17,15 @@ function setImage(){
 }
 
 function addPostToContent(content){
-    console.log(content)
+    postNumber = parseInt(document.getElementsByClassName('post-container')[0].id.split('-')[1]) + 1;
+    category = document.getElementById('category-selector').value;
+    date = document.getElementById('postDatetime').value.split('T')[0];
+    time = document.getElementById('postDatetime').value.split('T')[1];
+    title = document.getElementById('postTitle').value;
+    subtitle = document.getElementById('postSubTitle').value;
+    postImage = document.getElementById('postImage').value;
+    row = postNumber + ',' + category + ',' + date + ',' + time + ',' + title + ',' + subtitle + ',' + postImage + ',' + content.replaceAll('"',"'");
+    document.getElementById('generatedHTML').textContent = row;
 }
 
 function Post(){
@@ -101,5 +109,5 @@ $(document).ready(function() {
             var elem = document.querySelector('#popularPostTemp');
             elem.remove();
         }
-     });
+    });
 });

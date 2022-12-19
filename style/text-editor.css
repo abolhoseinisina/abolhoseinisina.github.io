@@ -18,3 +18,12 @@
 .sample-toolbar>span:hover {
     text-decoration: underline;
 }
+
+.sample-toolbar input{
+    margin: 5px;
+}
+
+.sample-toolbar select{
+    width: auto;
+    border-radius: 2px;
+}
