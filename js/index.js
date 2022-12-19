@@ -1,3 +1,30 @@
+function format(command, value) {
+    document.execCommand(command, false, value);
+}
+
+function setUrl() {
+    var url = document.getElementById('txtFormatUrl').value;
+    var sText = document.getSelection();
+    document.execCommand('insertHTML', false, '<a href="' + url + '" target="_blank">' + sText + '</a>');
+    document.getElementById('txtFormatUrl').value = '';
+}
+
+function setImage(){
+    var url = document.getElementById('imgFromUrl').value;
+    var imgWidth = document.getElementById('imgWidth').value;
+    previousContent = document.getElementById('sampleeditor').innerHTML;
+    document.getElementById('sampleeditor').innerHTML = previousContent + '<br><img src="' + url + '" width="' + imgWidth + '" /><br>'
+}
+
+function addPostToContent(content){
+    console.log(content)
+}
+
+function Post(){
+    var textEditor = document.getElementById('sampleeditor');
+    addPostToContent(textEditor.innerHTML);
+}
+
 function onSignIn(googleUser) {
     var profile = googleUser.getBasicProfile();
     console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
@@ -46,7 +73,27 @@ function createPopularPost(post){
     elem.after(clone);
 }
 
+function checkWebLocation(){
+    switch(window.location.protocol) {
+        case 'http:':
+        case 'https:':
+            document.getElementById('postEditor').style = 'display: none';
+            console.log('Not in editor mode.')
+            break;
+        case 'file:':
+            document.getElementById('postEditor').style = 'display: block';
+            console.log('In editor mode.')
+            break;
+        default: 
+            document.getElementById('postEditor').style = 'display: none';
+            console.log('I could not detect where you are working!')
+     }
+}
+
 $(document).ready(function() {
+    document.getElementById('sampleeditor').setAttribute('contenteditable', 'true');
+    checkWebLocation();
+
     $.ajax({
         type: "GET",
         url: "https://raw.githubusercontent.com/abolhoseinisina/abolhoseinisina.github.io/main/content/posts.csv",

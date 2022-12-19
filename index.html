@@ -7,9 +7,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="google-site-verification" content="p0V1-yQt8TlxGakS354qT7l_ooFjk7ZxHAEME6PEY-w" />
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="style/text-editor.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
         <script src="https://apis.google.com/js/platform.js" async defer></script>
         <meta name="google-signin-client_id" content="264811420818-m2h609j3sqr6jcivdtrfvo3bfi325cht.apps.googleusercontent.com">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
         <style>
             body, h1, h2, h3, h4, h5 {
                 font-family: "Raleway", sans-serif
@@ -18,7 +20,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
         <script src="js/jquery.csv.min.js"></script>
     </head>
-    
+
     <body class="w3-light-grey">
         <div class="w3-content" style="max-width:1400px">
             
@@ -29,6 +31,22 @@
             
             <div class="w3-row">
             <div class="w3-col l8 s12">
+                <!-- Post editor -->
+                <div class="w3-card-4 w3-margin w3-white" id="postEditor">
+                    <div class="sample-toolbar">
+                        <a href="javascript:void(0)" onclick="format('bold')"><span class="fa fa-bold fa-fw"></span></a>
+                        <a href="javascript:void(0)" onclick="format('italic')"><span class="fa fa-italic fa-fw"></span></a>
+                        <a href="javascript:void(0)" onclick="format('insertunorderedlist')"><span class="fa fa-list fa-fw"></span></a>
+                        <a href="javascript:void(0)" onclick="setUrl()"><span class="fa fa-link fa-fw"></span></a>
+                        <span><input id="txtFormatUrl" placeholder="link address" class="form-control"></span>
+                        <a href="javascript:void(0)" onclick="setImage()"><span class="fa fa-image fa-fw"></span></a>
+                        <span><input id="imgFromUrl" placeholder="image url" class="form-control"></span>
+                        <span><input id="imgWidth" placeholder="image width" class="form-control"></span>
+                    </div>
+                    <div class="editor" id="sampleeditor"></div>
+                    <button class="w3-button w3-black" onclick="Post()">Post</button>
+                </div>
+
                 <!-- Blog entry -->
                 <div class="w3-card-4 w3-margin w3-white" id="postTemp">
                     <img class="post-image" src="" alt="Science" style="width:100%">
