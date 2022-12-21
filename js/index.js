@@ -13,7 +13,7 @@ function setImage(){
     var url = document.getElementById('imgFromUrl').value;
     var imgWidth = document.getElementById('imgWidth').value;
     previousContent = document.getElementById('sampleeditor').innerHTML;
-    document.getElementById('sampleeditor').innerHTML = '<div class="image-container">' + previousContent + '<br><img src="' + url + '" width="' + imgWidth + '" /><div class="image-overlay">Reference: ' + url.split('/').slice(0,3).join('/') + '</div><br></div>'
+    document.getElementById('sampleeditor').innerHTML = '<div class="image-container w3-center">' + previousContent + '<br><img src="' + url + '" width="' + imgWidth + '" /><div class="image-overlay">Reference: ' + url.split('/').slice(0,3).join('/') + '</div><br></div>'
     document.getElementById('imgFromUrl').value = '';
 }
 
