@@ -1,0 +1,12 @@
+.image-overlay {
+    position: relative;
+    bottom: 20px;
+    color: grey;
+    opacity: 0;
+    font-weight: bold;
+    margin-left: 3px;
+}
+
+.image-container:hover .image-overlay {
+    opacity:1;
+}

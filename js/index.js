@@ -13,7 +13,8 @@ function setImage(){
     var url = document.getElementById('imgFromUrl').value;
     var imgWidth = document.getElementById('imgWidth').value;
     previousContent = document.getElementById('sampleeditor').innerHTML;
-    document.getElementById('sampleeditor').innerHTML = previousContent + '<br><img src="' + url + '" width="' + imgWidth + '" /><br>'
+    document.getElementById('sampleeditor').innerHTML = '<div class="image-container">' + previousContent + '<br><img src="' + url + '" width="' + imgWidth + '" /><div class="image-overlay">Reference: ' + url.split('/').slice(0,3).join('/') + '</div><br></div>'
+    document.getElementById('imgFromUrl').value = '';
 }
 
 function addPostToContent(content){
@@ -47,6 +48,7 @@ function createPost(post){
 
     clone.id = 'post-' + post['postNumber'];
     clone.getElementsByClassName("post-image")[0].src = post['picture'];
+    clone.getElementsByClassName("image-overlay")[0].textContent = "Reference: " + post['picture'].split('/').slice(0,3).join('/');
     clone.getElementsByClassName("post-title")[0].innerHTML = "<h3><b>" + post['title'] + "</b></h3><h5>" + post['subtitle'] + 
                                                               ", <span class='w3-opacity'>" + date + "</span></h5>";
     clone.getElementsByClassName("post-content")[0].innerHTML = post['content'];
