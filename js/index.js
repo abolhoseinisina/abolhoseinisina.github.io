@@ -24,7 +24,7 @@ function addPostToContent(content){
     title = document.getElementById('postTitle').value;
     subtitle = document.getElementById('postSubTitle').value;
     postImage = document.getElementById('postImage').value;
-    row = postNumber + ',' + category + ',' + date + ',' + time + ',' + title + ',' + subtitle + ',' + postImage + ',' + content.replaceAll('"',"'");
+    row = postNumber + ',' + category + ',' + date + ',' + time + ',' + title + ',' + subtitle + ',' + postImage + ',"' + content.replaceAll('"',"'") + '"';
     document.getElementById('generatedHTML').textContent = row;
 }
 
@@ -66,6 +66,16 @@ function createPopularPost(post){
     elem.after(clone);
 }
 
+function filterPosts(subject){
+    console.log('Filter is not working.')
+}
+
+function createSubjectButton(subject){
+    var elem = document.querySelector('.category-button');
+    button = '<button class="w3-button w3-khaki w3-xlarge" style="width:20%" onclick="filterPosts(' + subject + ')">' + subject + '</button>';
+    elem.innerHTML = elem.innerHTML + button;
+}
+
 function checkWebLocation(){
     switch(window.location.protocol) {
         case 'http:':
@@ -93,7 +103,11 @@ $(document).ready(function() {
         dataType: "text",
         success: function(posts) {
             posts = $.csv.toObjects(posts);
-            
+            subjects = _.keys(_.countBy(posts, function(posts) { return posts.subject; }));
+            for (let i = 0; i < subjects.length; i++) {
+                createSubjectButton(subjects[i]);
+            }
+
             for (let i = 0; i < posts.length; i++) {
                 createPost(posts[posts.length - 1 - i]);
             }
