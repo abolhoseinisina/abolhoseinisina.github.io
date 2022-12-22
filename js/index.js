@@ -47,6 +47,8 @@ function createPost(post){
     date = postDatetime.toLocaleString("default", options);
 
     clone.id = 'post-' + post['postNumber'];
+    clone.style = 'display: block';
+    clone.className += ' post-container';
     clone.getElementsByClassName("post-image")[0].src = post['picture'];
     clone.getElementsByClassName("image-overlay")[0].textContent = "Reference: " + post['picture'].split('/').slice(0,3).join('/');
     clone.getElementsByClassName("post-title")[0].innerHTML = "<h3><b>" + post['title'] + "</b></h3><h5>" + post['subtitle'] + 
@@ -68,13 +70,26 @@ function createPopularPost(post){
     elem.after(clone);
 }
 
-function filterPosts(subject){
-    console.log('Filter is not working.')
+function filterPosts(subject, callback){
+    $.ajax({
+        type: "GET",
+        url: "https://raw.githubusercontent.com/abolhoseinisina/abolhoseinisina.github.io/main/content/posts.csv",
+        dataType: "text",
+        success: function(posts) {
+            posts = $.csv.toObjects(posts);
+            document.querySelectorAll('.post-container').forEach(el => el.remove());
+            for (let i = 0; i < posts.length; i++) {
+                if (posts[posts.length - 1 - i]['subject'] == subject){
+                    callback(posts[posts.length - 1 - i]);
+                }
+            }
+        }
+    });
 }
 
 function createSubjectButton(subject){
     var elem = document.querySelector('.category-button');
-    button = '<button class="w3-button w3-khaki w3-xlarge" style="width:20%" onclick="filterPosts(' + subject + ')">' + subject + '</button>';
+    button = "<button class='w3-button w3-khaki w3-xlarge' style='width:20%' onclick='filterPosts(" + '"' + subject + '"' + ", createPost)'>" + subject + "</button>";
     elem.innerHTML = elem.innerHTML + button;
 }
 
@@ -120,8 +135,8 @@ $(document).ready(function() {
                 }
             }
 
-            var elem = document.querySelector('#postTemp');
-            elem.remove();
+            // var elem = document.querySelector('#postTemp');
+            // elem.remove();
             var elem = document.querySelector('#popularPostTemp');
             elem.remove();
         }
