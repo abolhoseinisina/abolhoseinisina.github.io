@@ -89,7 +89,7 @@ function filterPosts(subject, callback){
 
 function createSubjectButton(subject){
     var elem = document.querySelector('.category-button');
-    button = "<button class='w3-button w3-khaki w3-xlarge' style='width:20%' onclick='filterPosts(" + '"' + subject + '"' + ", createPost)'>" + subject + "</button>";
+    button = "<button class='w3-button w3-khaki w3-xlarge' style='width:20%; text-transform: capitalize;' onclick='filterPosts(" + '"' + subject + '"' + ", createPost)'>" + subject + "</button>";
     elem.innerHTML = elem.innerHTML + button;
 }
 
