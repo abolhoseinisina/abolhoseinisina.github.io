@@ -11,6 +11,11 @@ function setUrl() {
     document.getElementById('txtFormatUrl').value = '';
 }
 
+function setAsCode() {
+    var sText = document.getSelection();
+    document.execCommand('insertHTML', false, '<code style="color: #970000">' + sText + '</code>');
+}
+
 function setImage() {
     var url = document.getElementById('imgFromUrl').value;
     var imgWidth = document.getElementById('imgWidth').value;
