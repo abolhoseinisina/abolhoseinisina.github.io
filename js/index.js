@@ -168,8 +168,22 @@ function createPaginationButtons(postsNumber) {
     }
 }
 
+function setCounter(){
+    $.ajax({
+        type: "GET",
+        url: 'https://api.counterapi.dev/v1/abolhoseinisina/blog/up',
+        success: function (counter) {
+            $("#visitors").text(counter.count);
+        },
+        error: function (error){
+            $("#visitors").text('#');
+        }
+    });
+}
+
 $(document).ready(function () {
     document.getElementById('sampleeditor').setAttribute('contenteditable', 'true');
+    setCounter();
     checkWebLocation();
     $.ajax({
         type: "GET",
